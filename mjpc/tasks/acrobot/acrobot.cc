@@ -31,6 +31,7 @@ std::string Acrobot::Name() const { return "Acrobot"; }
 //     Residual (0-1): Distance from tip to goal
 //     Residual (2-3): Joint velocity
 //     Residual (4):   Control
+//     Residual (5):   Distance from obstacle
 // -----------------------------------------------
 void Acrobot::ResidualFn::Residual(const mjModel* model, const mjData* data,
                        double* residual) const {
@@ -46,6 +47,11 @@ void Acrobot::ResidualFn::Residual(const mjModel* model, const mjData* data,
 
   // ---------- Residual (4) ----------
   residual[4] = data->ctrl[0];
+
+  // ---------- Residual (5) ----------
+  int sensor_id = mj_name2id(model, mjOBJ_SENSOR, "sphere_distance");
+  int sensor_adr = model->sensor_adr[sensor_id];
+  residual[5] = 2 - data->sensordata[sensor_adr];
 }
 
 }  // namespace mjpc

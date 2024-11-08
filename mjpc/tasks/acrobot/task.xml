@@ -1,7 +1,7 @@
 <mujoco model="Acrobot Swing-Up">
   <include file="../common.xml"/>
   <!-- modified from: https://github.com/google-deepmind/dm_control/blob/main/dm_control/suite/acrobot.xml-->
-  <include file="acrobot_modified.xml" />
+  <include file="acrobot_test.xml" />
 
   <size memory="4K"/>
 
@@ -21,9 +21,11 @@
     <user name="Distance" dim="2" user="0 50.0 0 100.0"/>
     <user name="Velocity" dim="2" user="0  1.0 0 10.0"/>
     <user name="Control" dim="1" user="0 0.05 0.0 1.0"/>
+    <user name="Sphere Distance" dim="1" user="0 50.0 0.0 100.0"/>
     <framepos name="trace0" objtype="site" objname="tip"/>
     <framepos name="position" objtype="site" objname="tip"/>
     <framelinvel name="velocity" objtype="site" objname="tip"/>
+    <distance name="sphere_distance" geom1="tip_sphere" geom2="avoid_sphere" cutoff="2.0"/>
   </sensor>
 
   <keyframe>

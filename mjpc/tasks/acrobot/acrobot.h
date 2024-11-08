@@ -33,6 +33,7 @@ class Acrobot : public Task {
     //     Residual (0-1): Distance from tip to goal
     //     Residual (2-3): Joint velocity
     //     Residual (4):   Control
+    //     Residual (5):   Distance from obstacle
     // -----------------------------------------------
     void Residual(const mjModel* model, const mjData* data,
                   double* residual) const override;
